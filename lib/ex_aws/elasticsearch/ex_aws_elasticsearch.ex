@@ -132,20 +132,21 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.add_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello", value: "test"}])
-      %ExAws.Operation.Query{
-      action: :add_tags,
-      params: %{
-        "Action" => "AddTags",
-        "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
-        "TagList.1.Key" => "Hello",
-        "TagList.1.Value" => "test",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-      }
+        iex> ExAws.ElasticSearch.add_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello", value: "test"}])
+        %ExAws.Operation.Query{
+        action: :add_tags,
+        params: %{
+          "Action" => "AddTags",
+          "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
+          "TagList.1.Key" => "Hello",
+          "TagList.1.Value" => "test",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+        }
+
   """
   @spec add_tags(arn :: binary, tag_list :: [tag, ...]) :: ExAws.Operation.Query.t()
   def add_tags(arn, tag_list) do
@@ -164,18 +165,19 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.cancel_elasticsearch_service_software_update("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :cancel_elasticsearch_service_software_update,
-      params: %{
-        "Action" => "CancelElasticsearchServiceSoftwareUpdate",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.cancel_elasticsearch_service_software_update("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :cancel_elasticsearch_service_software_update,
+        params: %{
+          "Action" => "CancelElasticsearchServiceSoftwareUpdate",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
+
   """
   @spec cancel_elasticsearch_service_software_update(domain_name :: binary) ::
           ExAws.Operation.Query.t()
@@ -239,8 +241,7 @@ defmodule ExAws.ElasticSearch do
     * node_to_node_encryption_options (`Map`) - Specifies the NodeToNodeEncryptionOptions.
           * enabled (`Boolean`) - Specify true to enable node-to-node encryption.
 
-    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true .
-                                 See [Configuration Advanced Options] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options for more information.
+    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See [Configuration Advanced Options] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options for more information.
           * %{`String`: "string"}
 
     * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of LogType and LogPublishingOption , each containing options to publish a given type of Elasticsearch log.
@@ -269,18 +270,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.delete_elasticsearch_domain("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :delete_elasticsearch_domain,
-      params: %{
-        "Action" => "DeleteElasticsearchDomain",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.delete_elasticsearch_domain("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :delete_elasticsearch_domain,
+        params: %{
+          "Action" => "DeleteElasticsearchDomain",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec delete_elasticsearch_domain(domain_name :: binary) :: ExAws.Operation.Query.t()
@@ -300,17 +301,17 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.delete_elasticsearch_service_role()
-    %ExAws.Operation.Query{
-      action: :delete_elasticsearch_service_role,
-      params: %{
-        "Action" => "DeleteElasticsearchServiceRole",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.delete_elasticsearch_service_role()
+      %ExAws.Operation.Query{
+        action: :delete_elasticsearch_service_role,
+        params: %{
+          "Action" => "DeleteElasticsearchServiceRole",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec delete_elasticsearch_service_role() :: ExAws.Operation.Query.t()
@@ -327,18 +328,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.describe_elasticsearch_domain("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :describe_elasticsearch_domain,
-      params: %{
-        "Action" => "DescribeElasticsearchDomain",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.describe_elasticsearch_domain("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :describe_elasticsearch_domain,
+        params: %{
+          "Action" => "DescribeElasticsearchDomain",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec describe_elasticsearch_domain(domain_name :: binary) :: ExAws.Operation.Query.t()
@@ -356,18 +357,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.describe_elasticsearch_domain_config("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :describe_elasticsearch_domain_config,
-      params: %{
-        "Action" => "DescribeElasticsearchDomainConfig",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.describe_elasticsearch_domain_config("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :describe_elasticsearch_domain_config,
+        params: %{
+          "Action" => "DescribeElasticsearchDomainConfig",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec describe_elasticsearch_domain_config(domain_name :: binary) :: ExAws.Operation.Query.t()
@@ -382,24 +383,22 @@ defmodule ExAws.ElasticSearch do
   ## Parameters:
 
     * domain_names (`List` of `String`) - The Elasticsearch domains for which you want information. [REQUIRED]
-                                          The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region.
-                                          Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.describe_elasticsearch_domains(["http://your.es.domain.here.com", "http://your.next.es.domain.here.com"])
-    %ExAws.Operation.Query{
-      action: :describe_elasticsearch_domains,
-      params: %{
-        "Action" => "DescribeElasticsearchDomains",
-        "DomainNames.1" => "http://your.es.domain.here.com",
-        "DomainNames.2" => "http://your.next.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.describe_elasticsearch_domains(["http://your.es.domain.here.com", "http://your.next.es.domain.here.com"])
+      %ExAws.Operation.Query{
+        action: :describe_elasticsearch_domains,
+        params: %{
+          "Action" => "DescribeElasticsearchDomains",
+          "DomainNames.1" => "http://your.es.domain.here.com",
+          "DomainNames.2" => "http://your.next.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec describe_elasticsearch_domains(domain_names :: [binary, ...]) :: ExAws.Operation.Query.t()
@@ -417,23 +416,23 @@ defmodule ExAws.ElasticSearch do
 
     * instance_type (`String`) - The instance type for an Elasticsearch cluster for which Elasticsearch `` Limits `` are needed. [REQUIRED]
 
-    * elasticsearch_version (`String) - Version of Elasticsearch for which `` Limits `` are needed. [REQUIRED]
+    * elasticsearch_version (`String`) - Version of Elasticsearch for which `` Limits `` are needed. [REQUIRED]
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.describe_elasticsearch_instance_type_limits("m3.medium.elasticsearch", "6.7.1")
-    %ExAws.Operation.Query{
-      action: :describe_elasticsearch_instance_type_limits,
-      params: %{
-        "Action" => "DescribeElasticsearchInstanceTypeLimits",
-        "ElasticsearchVersion" => "6.7.1",
-        "InstanceType" => "m3.medium.elasticsearch",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.describe_elasticsearch_instance_type_limits("m3.medium.elasticsearch", "6.7.1")
+      %ExAws.Operation.Query{
+        action: :describe_elasticsearch_instance_type_limits,
+        params: %{
+          "Action" => "DescribeElasticsearchInstanceTypeLimits",
+          "ElasticsearchVersion" => "6.7.1",
+          "InstanceType" => "m3.medium.elasticsearch",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec describe_elasticsearch_instance_type_limits(
@@ -467,18 +466,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.describe_reserved_elasticsearch_instance_offerings(reserved_elasticsearch_instance_offering_id: "offering_id")
-    %ExAws.Operation.Query{
-      action: :describe_reserved_elasticsearch_instance_offerings,
-      params: %{
-        "Action" => "DescribeReservedElasticsearchInstanceOfferings",
-        "ReservedElasticsearchInstanceOfferingId" => "offering_id",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.describe_reserved_elasticsearch_instance_offerings(reserved_elasticsearch_instance_offering_id: "offering_id")
+      %ExAws.Operation.Query{
+        action: :describe_reserved_elasticsearch_instance_offerings,
+        params: %{
+          "Action" => "DescribeReservedElasticsearchInstanceOfferings",
+          "ReservedElasticsearchInstanceOfferingId" => "offering_id",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec describe_reserved_elasticsearch_instance_offerings(
@@ -502,18 +501,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.describe_reserved_elasticsearch_instances(reserved_elasticsearch_instance_id: "i-123456789")
-    %ExAws.Operation.Query{
-      action: :describe_reserved_instances,
-      params: %{
-        "Action" => "DescribeReservedInstances",
-        "ReservedElasticsearchInstanceId" => "i-123456789",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.describe_reserved_elasticsearch_instances(reserved_elasticsearch_instance_id: "i-123456789")
+      %ExAws.Operation.Query{
+        action: :describe_reserved_instances,
+        params: %{
+          "Action" => "DescribeReservedInstances",
+          "ReservedElasticsearchInstanceId" => "i-123456789",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec describe_reserved_elasticsearch_instances(
@@ -533,18 +532,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.get_compatible_elasticsearch_versions(domain_name: "http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :get_compatible_elasticsearch_versions,
-      params: %{
-        "Action" => "GetCompatibleElasticsearchVersions",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.get_compatible_elasticsearch_versions(domain_name: "http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :get_compatible_elasticsearch_versions,
+        params: %{
+          "Action" => "GetCompatibleElasticsearchVersions",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec get_compatible_elasticsearch_versions(opts :: domain_name_opts) ::
@@ -567,18 +566,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.get_upgrade_history("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :get_upgrade_history,
-      params: %{
-        "Action" => "GetUpgradeHistory",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.get_upgrade_history("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :get_upgrade_history,
+        params: %{
+          "Action" => "GetUpgradeHistory",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec get_upgrade_history(domain_name :: binary) :: ExAws.Operation.Query.t()
@@ -598,18 +597,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.get_upgrade_status("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :get_upgrade_status,
-      params: %{
-        "Action" => "GetUpgradeStatus",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.get_upgrade_status("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :get_upgrade_status,
+        params: %{
+          "Action" => "GetUpgradeStatus",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec get_upgrade_status(domain_name :: binary) :: ExAws.Operation.Query.t()
@@ -627,14 +626,14 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.list_domain_names()
-    %ExAws.Operation.Query{
-      action: :list_domain_names,
-      params: %{"Action" => "ListDomainNames", "Version" => "2015-01-01"},
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.list_domain_names()
+      %ExAws.Operation.Query{
+        action: :list_domain_names,
+        params: %{"Action" => "ListDomainNames", "Version" => "2015-01-01"},
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec list_domain_names() :: ExAws.Operation.Query.t()
@@ -657,18 +656,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.list_elasticsearch_instance_types("6.7.1")
-    %ExAws.Operation.Query{
-      action: :list_elasticsearch_instance_types,
-      params: %{
-        "Action" => "ListElasticsearchInstanceTypes",
-        "ElasticsearchVersion" => "6.7.1",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.list_elasticsearch_instance_types("6.7.1")
+      %ExAws.Operation.Query{
+        action: :list_elasticsearch_instance_types,
+        params: %{
+          "Action" => "ListElasticsearchInstanceTypes",
+          "ElasticsearchVersion" => "6.7.1",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec list_elasticsearch_instance_types(elasticsearch_version :: binary) ::
@@ -693,18 +692,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.list_elasticsearch_versions(max_results: 20)
-    %ExAws.Operation.Query{
-      action: :list_elasticsearch_versions,
-      params: %{
-        "Action" => "ListElasticsearchVersions",
-        "MaxResults" => 20,
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.list_elasticsearch_versions(max_results: 20)
+      %ExAws.Operation.Query{
+        action: :list_elasticsearch_versions,
+        params: %{
+          "Action" => "ListElasticsearchVersions",
+          "MaxResults" => 20,
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec list_elasticsearch_versions() :: ExAws.Operation.Query.t()
@@ -723,18 +722,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.list_tags("arn:aws:elasticsearch:region:123456789:your_es")
-    %ExAws.Operation.Query{
-      action: :list_tags,
-      params: %{
-        "Action" => "ListTags",
-        "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.list_tags("arn:aws:elasticsearch:region:123456789:your_es")
+      %ExAws.Operation.Query{
+        action: :list_tags,
+        params: %{
+          "Action" => "ListTags",
+          "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec list_tags(arn :: binary) :: ExAws.Operation.Query.t()
@@ -756,20 +755,20 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.purchase_reserved_elasticsearch_instance_offering("offering_id", "reservation_name", instance_count: 10)
-    %ExAws.Operation.Query{
-      action: :purchase_reserved_elasticsearch_instance_offering,
-      params: %{
-        "Action" => "PurchaseReservedElasticsearchInstanceOffering",
-        "InstanceCount" => 10,
-        "ReservationName" => "reservation_name",
-        "ReservedElasticsearchInstanceOfferingId" => "offering_id",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.purchase_reserved_elasticsearch_instance_offering("offering_id", "reservation_name", instance_count: 10)
+      %ExAws.Operation.Query{
+        action: :purchase_reserved_elasticsearch_instance_offering,
+        params: %{
+          "Action" => "PurchaseReservedElasticsearchInstanceOffering",
+          "InstanceCount" => 10,
+          "ReservationName" => "reservation_name",
+          "ReservedElasticsearchInstanceOfferingId" => "offering_id",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec purchase_reserved_elasticsearch_instance_offering(
@@ -804,20 +803,20 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.remove_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello"}, %{key: "World"}])
-    %ExAws.Operation.Query{
-      action: :remove_tags,
-      params: %{
-        "Action" => "RemoveTags",
-        "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
-        "TagKeys.1.Key" => "Hello",
-        "TagKeys.2.Value" => "World",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.remove_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello"}, %{key: "World"}])
+      %ExAws.Operation.Query{
+        action: :remove_tags,
+        params: %{
+          "Action" => "RemoveTags",
+          "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
+          "TagKeys.1.Key" => "Hello",
+          "TagKeys.2.Value" => "World",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec remove_tags(arn :: binary, tag_keys :: [tag_key_only, ...]) :: ExAws.Operation.Query.t()
@@ -835,18 +834,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.start_elasticsearch_service_software_update("http://your.es.domain.here.com")
-    %ExAws.Operation.Query{
-      action: :start_elasticsearch_service_software_update,
-      params: %{
-        "Action" => "StartElasticsearchServiceSoftwareUpdate",
-        "DomainName" => "http://your.es.domain.here.com",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.start_elasticsearch_service_software_update("http://your.es.domain.here.com")
+      %ExAws.Operation.Query{
+        action: :start_elasticsearch_service_software_update,
+        params: %{
+          "Action" => "StartElasticsearchServiceSoftwareUpdate",
+          "DomainName" => "http://your.es.domain.here.com",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec start_elasticsearch_service_software_update(domain_name :: binary) ::
@@ -898,8 +897,7 @@ defmodule ExAws.ElasticSearch do
           * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana authentication.
           * role_arn (`String`) - Specifies the role ARN that provides Elasticsearch permissions for accessing Cognito resources.
 
-    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true .
-                                 See [Configuration Advanced Options] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options for more information.
+    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See [Configuration Advanced Options] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options for more information.
           * %{`String`: "string"}
 
     * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of LogType and LogPublishingOption , each containing options to publish a given type of Elasticsearch log.
@@ -932,20 +930,20 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-    iex> ExAws.ElasticSearch.upgrade_elasticsearch_domain("http://your.es.domain.here.com", "6.7.1", perform_check_only: true)
-    %ExAws.Operation.Query{
-      action: :upgrade_elasticsearch_domain,
-      params: %{
-        "Action" => "UpgradeElasticsearchDomain",
-        "DomainName" => "http://your.es.domain.here.com",
-        "PerformCheckOnly" => true,
-        "TargetVersion" => "6.7.1",
-        "Version" => "2015-01-01"
-      },
-      parser: &ExAws.Utils.identity/2,
-      path: "/",
-      service: :es
-    }
+      iex> ExAws.ElasticSearch.upgrade_elasticsearch_domain("http://your.es.domain.here.com", "6.7.1", perform_check_only: true)
+      %ExAws.Operation.Query{
+        action: :upgrade_elasticsearch_domain,
+        params: %{
+          "Action" => "UpgradeElasticsearchDomain",
+          "DomainName" => "http://your.es.domain.here.com",
+          "PerformCheckOnly" => true,
+          "TargetVersion" => "6.7.1",
+          "Version" => "2015-01-01"
+        },
+        parser: &ExAws.Utils.identity/2,
+        path: "/",
+        service: :es
+      }
 
   """
   @spec upgrade_elasticsearch_domain(domain_name :: binary, target_version :: binary) ::
