@@ -122,7 +122,8 @@ defmodule ExAws.Elasticsearch do
   Attaches tags to an existing Elasticsearch domain.
 
   Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may
-  have up to 10 tags. See https://amzn.to/2CZxBEH for more information.
+  have up to 10 tags. See [Managing Amazon Elasticsearch Service
+  Domains](https://amzn.to/2CZxBEH) for more information.
 
   ## Parameters:
 
