@@ -201,110 +201,110 @@ defmodule ExAws.Elasticsearch do
   ## Parameters:
 
     * domain_name (`String`) - The name of the Elasticsearch domain that you are
-                               creating. Domain names are unique across the
-                               domains owned by an account within an AWS region.
-                               Domain names must start with a letter or number
-                               and can contain the following characters: a-z
-                               (lowercase), 0-9, and - (hyphen).
+      creating. Domain names are unique across the domains owned by an account
+      within an AWS region. Domain names must start with a letter or number and
+      can contain the following characters: a-z (lowercase), 0-9, and -
+      (hyphen).
 
     * elasticsearch_version (`String`) - String of format X.Y to specify version
-                                         for the Elasticsearch domain eg. "1.5"
-                                         or "2.3". For more information, see
-                                         [Creating Elasticsearch Domains](https://amzn.to/2Uu3XC7)
-                                         in the Amazon Elasticsearch Service
-                                         Developer Guide.
+      for the Elasticsearch domain eg. "1.5" or "2.3". For more information, see
+      [Creating Elasticsearch Domains](https://amzn.to/2Uu3XC7) in the Amazon
+      Elasticsearch Service Developer Guide.
 
     * elasticsearch_cluster_config (`Map` of `t:elasticsearch_cluster_config/0`)
-          - Configuration options for an Elasticsearch domain. Specifies the
-          instance type and number of instances in the domain cluster.
-              * instance_type (`String`) - The instance type for an Elasticsearch
-              cluster.
-              * instance_count (`Integer`) - The number of instances in the
-              specified domain cluster.
-              * dedicated_master_enabled (`Boolean`) - A
-              boolean value to indicate whether a dedicated master node is enabled.
-              See [About Dedicated Master Nodes](https://amzn.to/2UMAmDe)
-              for more information.
-              * zone_awareness_enabled (`Boolean`) - A boolean
-              value to indicate whether zone awareness is enabled. See [About Zone
-              Awareness](https://amzn.to/2WVHYkm) for more information.
-              * zone_awareness_config (`Map`) - Specifies the
-              zone awareness configuration for a domain when zone awareness is
-              enabled.
-                  * availability_zone_count (`Integer`) - An integer value to
-                  indicate the number of availability zones for a domain when zone
-                  awareness is enabled. This should be equal to number of subnets if VPC
-                  endpoints is enabled
-              * dedicated_master_type (`String`) - The instance
-              type for a dedicated master node.
-              * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for
-              the cluster.
+    - Configuration options for an Elasticsearch domain. Specifies the instance
+      type and number of instances in the domain cluster.
+        * instance_type (`String`) - The instance type for an Elasticsearch
+        cluster.
+        * instance_count (`Integer`) - The number of instances in the
+        specified domain cluster.
+        * dedicated_master_enabled (`Boolean`) - A
+        boolean value to indicate whether a dedicated master node is enabled.
+        See [About Dedicated Master Nodes](https://amzn.to/2UMAmDe)
+        for more information.
+        * zone_awareness_enabled (`Boolean`) - A boolean
+        value to indicate whether zone awareness is enabled. See [About Zone
+        Awareness](https://amzn.to/2WVHYkm) for more information.
+        * zone_awareness_config (`Map`) - Specifies the
+        zone awareness configuration for a domain when zone awareness is
+        enabled.
+            * availability_zone_count (`Integer`) - An integer value to
+            indicate the number of availability zones for a domain when zone
+            awareness is enabled. This should be equal to number of subnets if VPC
+            endpoints is enabled
+        * dedicated_master_type (`String`) - The instance
+        type for a dedicated master node.
+        * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for
+        the cluster.
 
     * ebs_options (`Map` of `t:ebs_options/0`) - Options to enable, disable and
-          specify the type and size of EBS storage volumes.
-          * ebs_enabled (`Boolean`) - Specifies whether EBS-based storage is enabled.
-          * volume_type (`String`) - Specifies the volume type for EBS-based
-          storage.
-          * volume_size (`Integer`) - Integer to specify the size of an
-          EBS volume.
-          * iops (`Integer`) - Specifies the IOPD for a Provisioned
-          IOPS EBS volume (SSD).
+      specify the type and size of EBS storage volumes.
+      * ebs_enabled (`Boolean`) - Specifies whether EBS-based storage is enabled.
+      * volume_type (`String`) - Specifies the volume type for EBS-based
+      storage.
+      * volume_size (`Integer`) - Integer to specify the size of an
+      EBS volume.
+      * iops (`Integer`) - Specifies the IOPD for a Provisioned
+      IOPS EBS volume (SSD).
 
     * access_policies (`String`) - IAM access policy as a JSON-formatted string.
 
     * snapshot_options (`Map` of `t:snapshot_options/0`) - Option to set time,
-          in UTC format, of the daily automated snapshot. Default value is 0
-          hours.
-          * automated_snapshot_start_hour (`Integer`) - Specifies the
-          time, in UTC format, when the service takes a daily automated snapshot
-          of the specified Elasticsearch domain. Default value is 0 hours.
+      in UTC format, of the daily automated snapshot. Default value is 0
+      hours.
+      * automated_snapshot_start_hour (`Integer`) - Specifies the
+      time, in UTC format, when the service takes a daily automated snapshot
+      of the specified Elasticsearch domain. Default value is 0 hours.
 
     * vpc_options (`Map` of `t:vpc_options/0`) - Options to specify the subnets
-          and security groups for VPC endpoint. For more information, see
-          [Creating a VPC](https://amzn.to/2U38s1C)
-          in VPC Endpoints for Amazon Elasticsearch Service Domains
-          * subnet_ids (`List` of `String`) - Specifies the subnets for VPC endpoint.
-          * security_group_ids (`List` of `String`) - Specifies the security
-          groups for VPC endpoint.
+      and security groups for VPC endpoint. For more information, see
+      [Creating a VPC](https://amzn.to/2U38s1C)
+      in VPC Endpoints for Amazon Elasticsearch Service Domains
+      * subnet_ids (`List` of `String`) - Specifies the subnets for VPC endpoint.
+      * security_group_ids (`List` of `String`) - Specifies the security
+      groups for VPC endpoint.
 
     * cognito_options (`Map` of `t:cognito_options/0`) - Options to specify the
-          Cognito user and identity pools for Kibana authentication. For more
-          information, see [Amazon Cognito Authentication for Kibana](https://amzn.to/2Q2YUX5).
-          * enabled (`Boolean`) - Specifies the option to enable Cognito for
-          Kibana authentication.
-          * user_pool_id (`String`) - Specifies the
-          Cognito user pool ID for Kibana authentication.
-          * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana
-          authentication.
-          * role_arn (`String`) - Specifies the role ARN that
-          provides Elasticsearch permissions for accessing Cognito resources.
+      Cognito user and identity pools for Kibana authentication. For more
+      information, see [Amazon Cognito Authentication for Kibana](https://amzn.to/2Q2YUX5).
+      * enabled (`Boolean`) - Specifies the option to enable Cognito for
+      Kibana authentication.
+      * user_pool_id (`String`) - Specifies the
+      Cognito user pool ID for Kibana authentication.
+      * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana
+      authentication.
+      * role_arn (`String`) - Specifies the role ARN that
+      provides Elasticsearch permissions for accessing Cognito resources.
 
     * encryption_at_rest_options (`Map` of `t:encryption_at_rest_options/0`) -
-          Specifies the Encryption At Rest Options.
-          * enabled (`Boolean`) - Specifies the option to enable Encryption At Rest.
-          * kms_key_id (`String`) - Specifies the KMS Key ID for Encryption At Rest options.
+      Specifies the Encryption At Rest Options.
+      * enabled (`Boolean`) - Specifies the option to enable Encryption At Rest.
+      * kms_key_id (`String`) - Specifies the KMS Key ID for Encryption At Rest options.
 
-    * node_to_node_encryption_options (`Map`) - Specifies the
-          NodeToNodeEncryptionOptions.
-          * enabled (`Boolean`) - Specify true to
-          enable node-to-node encryption.
+    * node_to_node_encryption_options (`Map`) - Specifies the NodeToNodeEncryptionOptions.
+      * enabled (`Boolean`) - Specify true to enable node-to-node encryption.
 
     * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow
-          references to indices in an HTTP request body. Must be false when
-          configuring access to individual sub-resources. By default, the value
-          is true. See [Configuration Advanced Options](https://amzn.to/2LD1KPP)
-          for more information.
-          * %{`String`: "string"}
+      references to indices in an HTTP request body. Must be false when
+      configuring access to individual sub-resources. By default, the value
+      is true. See [Configuration Advanced Options](https://amzn.to/2LD1KPP)
+      for more information.
+      * %{`String`: "string"}
 
     * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of
-          LogType and LogPublishingOption , each containing options to publish a
-          given type of Elasticsearch log.
-          * %{`String`: %{
-            * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log
-            group to which log needs to be published.,
-            * enabled (`Boolean`) -
-            Specifies whether given log publishing option is enabled or not.
-          }}
+      LogType and LogPublishingOption , each containing options to publish a
+      given type of Elasticsearch log.
+      * 'String' (`String`) - Type of log file, it can be one of the following:
+        - INDEX_SLOW_LOGS: Index slow logs contain insert requests that took more time than
+        configured index query log threshold to execute.
+        - SEARCH_SLOW_LOGS: Search slow logs contain search queries that took more time than
+        configured search query log threshold to execute.
+        - ES_APPLICATION_LOGS: Elasticsearch application logs contain information about errors and
+        warnings raised during the operation of the service and can be useful for troubleshooting.
+          * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log
+          group to which log needs to be published.,
+          * enabled (`Boolean`) -
+          Specifies whether given log publishing option is enabled or not.
 
   """
   @spec create_elasticsearch_domain(domain_name :: binary) :: ExAws.Operation.Query.t()
@@ -478,8 +478,8 @@ defmodule ExAws.Elasticsearch do
   end
 
   @doc """
-  Describe Elasticsearch Limits for a given InstanceType and
-  ElasticsearchVersion.
+  Describe Elasticsearch Limits for a given instance_type and
+  elasticsearch_version.
 
   When modifying existing Domain, specify the ``
   DomainName `` to know what Limits are supported for modifying.
@@ -982,93 +982,97 @@ defmodule ExAws.Elasticsearch do
   ## Parameters:
 
     * domain_name (`String`) - The name of the Elasticsearch domain that you are
-                               creating. Domain names are unique across the
-                               domains owned by an account within an AWS region.
-                               Domain names must start with a letter or number
-                               and can contain the following characters: a-z
-                               (lowercase), 0-9, and - (hyphen).
+      creating. Domain names are unique across the domains owned by an account
+      within an AWS region. Domain names must start with a letter or number and
+      can contain the following characters: a-z (lowercase), 0-9, and -
+      (hyphen).
 
     * elasticsearch_cluster_config (`Map` of `t:elasticsearch_cluster_config/0`)
-          - Configuration options for an Elasticsearch domain. Specifies the
-          instance type and number of instances in the domain cluster.
-              * instance_type (`String`) - The instance type for an Elasticsearch
-              cluster.
-              * instance_count (`Integer`) - The number of instances in the
-              specified domain cluster.
-              * dedicated_master_enabled (`Boolean`) - A
-              boolean value to indicate whether a dedicated master node is enabled.
-              See [About Dedicated Master Nodes](https://amzn.to/2UMAmDe)
-              for more information.
-              * zone_awareness_enabled (`Boolean`) - A boolean
-              value to indicate whether zone awareness is enabled. See [About Zone
-              Awareness](https://amzn.to/2WVHYkm) for more information.
-              * zone_awareness_config (`Map`) - Specifies the
-              zone awareness configuration for a domain when zone awareness is
-              enabled.
-                  * availability_zone_count (`Integer`) - An integer value to
-                  indicate the number of availability zones for a domain when zone
-                  awareness is enabled. This should be equal to number of subnets if VPC
-                  endpoints is enabled
-              * dedicated_master_type (`String`) - The instance
-              type for a dedicated master node.
-              * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for
-              the cluster.
+      - Configuration options for an Elasticsearch domain. Specifies the
+      instance type and number of instances in the domain cluster.
+      * instance_type (`String`) - The instance type for an Elasticsearch
+      cluster.
+      * instance_count (`Integer`) - The number of instances in the
+      specified domain cluster.
+      * dedicated_master_enabled (`Boolean`) - A
+      boolean value to indicate whether a dedicated master node is enabled.
+      See [About Dedicated Master Nodes](https://amzn.to/2UMAmDe)
+      for more information.
+      * zone_awareness_enabled (`Boolean`) - A boolean
+      value to indicate whether zone awareness is enabled. See [About Zone
+      Awareness](https://amzn.to/2WVHYkm) for more information.
+      * zone_awareness_config (`Map`) - Specifies the
+      zone awareness configuration for a domain when zone awareness is
+      enabled.
+        * availability_zone_count (`Integer`) - An integer value to
+        indicate the number of availability zones for a domain when zone
+        awareness is enabled. This should be equal to number of subnets if VPC
+        endpoints is enabled
+      * dedicated_master_type (`String`) - The instance
+      type for a dedicated master node.
+      * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for
+      the cluster.
 
     * ebs_options (`Map` of `t:ebs_options/0`) - Options to enable, disable and
-          specify the type and size of EBS storage volumes.
-          * ebs_enabled (`Boolean`) - Specifies whether EBS-based storage is enabled.
-          * volume_type (`String`) - Specifies the volume type for EBS-based
-          storage.
-          * volume_size (`Integer`) - Integer to specify the size of an
-          EBS volume.
-          * iops (`Integer`) - Specifies the IOPD for a Provisioned
-          IOPS EBS volume (SSD).
+      specify the type and size of EBS storage volumes.
+      * ebs_enabled (`Boolean`) - Specifies whether EBS-based storage is enabled.
+      * volume_type (`String`) - Specifies the volume type for EBS-based
+      storage.
+      * volume_size (`Integer`) - Integer to specify the size of an
+      EBS volume.
+      * iops (`Integer`) - Specifies the IOPD for a Provisioned
+      IOPS EBS volume (SSD).
 
     * access_policies (`String`) - IAM access policy as a JSON-formatted string.
 
     * snapshot_options (`Map` of `t:snapshot_options/0`) - Option to set time,
-          in UTC format, of the daily automated snapshot. Default value is 0
-          hours.
-          * automated_snapshot_start_hour (`Integer`) - Specifies the
-          time, in UTC format, when the service takes a daily automated snapshot
-          of the specified Elasticsearch domain. Default value is 0 hours.
+      in UTC format, of the daily automated snapshot. Default value is 0
+      hours.
+      * automated_snapshot_start_hour (`Integer`) - Specifies the
+      time, in UTC format, when the service takes a daily automated snapshot
+      of the specified Elasticsearch domain. Default value is 0 hours.
 
     * vpc_options (`Map` of `t:vpc_options/0`) - Options to specify the subnets
-          and security groups for VPC endpoint. For more information, see
-          [Creating a VPC](https://amzn.to/2U38s1C)
-          in VPC Endpoints for Amazon Elasticsearch Service Domains
-          * subnet_ids (`List` of `String`) - Specifies the subnets for VPC endpoint.
-          * security_group_ids (`List` of `String`) - Specifies the security
-          groups for VPC endpoint.
+      and security groups for VPC endpoint. For more information, see
+      [Creating a VPC](https://amzn.to/2U38s1C)
+      in VPC Endpoints for Amazon Elasticsearch Service Domains
+      * subnet_ids (`List` of `String`) - Specifies the subnets for VPC endpoint.
+      * security_group_ids (`List` of `String`) - Specifies the security
+      groups for VPC endpoint.
 
     * cognito_options (`Map` of `t:cognito_options/0`) - Options to specify the
-          Cognito user and identity pools for Kibana authentication. For more
-          information, see [Amazon Cognito Authentication for Kibana](https://amzn.to/2Q2YUX5).
-          * enabled (`Boolean`) - Specifies the option to enable Cognito for
-          Kibana authentication.
-          * user_pool_id (`String`) - Specifies the
-          Cognito user pool ID for Kibana authentication.
-          * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana
-          authentication.
-          * role_arn (`String`) - Specifies the role ARN that
-          provides Elasticsearch permissions for accessing Cognito resources.
+      Cognito user and identity pools for Kibana authentication. For more
+      information, see [Amazon Cognito Authentication for Kibana](https://amzn.to/2Q2YUX5).
+      * enabled (`Boolean`) - Specifies the option to enable Cognito for
+      Kibana authentication.
+      * user_pool_id (`String`) - Specifies the
+      Cognito user pool ID for Kibana authentication.
+      * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana
+      authentication.
+      * role_arn (`String`) - Specifies the role ARN that
+      provides Elasticsearch permissions for accessing Cognito resources.
 
     * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow
-          references to indices in an HTTP request body. Must be false when
-          configuring access to individual sub-resources. By default, the value
-          is true. See [Configuration Advanced Options](https://amzn.to/2LD1KPP)
-          for more information.
-          * %{`String`: "string"}
+      references to indices in an HTTP request body. Must be false when
+      configuring access to individual sub-resources. By default, the value
+      is true. See [Configuration Advanced Options](https://amzn.to/2LD1KPP)
+      for more information.
+      * %{`String`: "string"}
 
     * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of
-          LogType and LogPublishingOption , each containing options to publish a
-          given type of Elasticsearch log.
-          * %{`String`: %{
-            * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log
-            group to which log needs to be published.,
-            * enabled (`Boolean`) -
-            Specifies whether given log publishing option is enabled or not.
-          }}
+      LogType and LogPublishingOption , each containing options to publish a
+      given type of Elasticsearch log.
+      * 'String' (`String`) - Type of log file, it can be one of the following:
+        - INDEX_SLOW_LOGS: Index slow logs contain insert requests that took more time than
+        configured index query log threshold to execute.
+        - SEARCH_SLOW_LOGS: Search slow logs contain search queries that took more time than
+        configured search query log threshold to execute.
+        - ES_APPLICATION_LOGS: Elasticsearch application logs contain information about errors and
+        warnings raised during the operation of the service and can be useful for troubleshooting.
+          * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log
+          group to which log needs to be published.,
+          * enabled (`Boolean`) -
+          Specifies whether given log publishing option is enabled or not.
 
   """
   @spec update_elasticsearch_domain_config(domain_name :: binary) :: ExAws.Operation.Query.t()
