@@ -1,6 +1,6 @@
-defmodule ExAws.ElasticSearch do
+defmodule ExAws.Elasticsearch do
   @moduledoc """
-  Documentation for ExAwsElasticSearch.
+  Documentation for ExAwsElasticsearch.
   """
   use ExAws.Utils,
     format_type: :xml,
@@ -119,20 +119,22 @@ defmodule ExAws.ElasticSearch do
           log_publishing_options: log_publishing_options
         ]
   @doc """
-  Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs.
-  An Elasticsearch domain may have up to 10 tags. See
-  https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging
-  for more information.
+  Attaches tags to an existing Elasticsearch domain.
+
+  Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may
+  have up to 10 tags. See https://amzn.to/2CZxBEH for more information.
 
   ## Parameters:
 
-    * arn (`String`) - Specify the ARN for which you want to add the tags. [REQUIRED]
+    * arn (`String`) - Specify the ARN for which you want to add the tags.
 
-    * tags (`List` of `t:tag/0`) - List of Tag that need to be added for the Elasticsearch domain. [REQUIRED]
+
+    * tags (`List` of `t:tag/0`) - List of Tag that need to be added for the
+      Elasticsearch domain.
 
   ## Examples:
 
-        iex> ExAws.ElasticSearch.add_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello", value: "test"}])
+        iex> ExAws.Elasticsearch.add_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello", value: "test"}])
         %ExAws.Operation.Query{
         action: :add_tags,
         params: %{
@@ -156,16 +158,19 @@ defmodule ExAws.ElasticSearch do
 
   @doc """
   Cancels a scheduled service software update for an Amazon ES domain.
-  You can only perform this operation before the AutomatedUpdateDate and when the UpdateStatus is in the PENDING_UPDATE state.
+
+  You can only perform this operation before the AutomatedUpdateDate and when the
+  UpdateStatus is in the PENDING_UPDATE state.
 
   ## Parameters:
 
-    * domain_name(`String`) - The name of the domain that you want to stop the latest service software update on. [REQUIRED]
+    * domain_name(`String`) - The name of the domain that you want to stop the
+      latest service software update on.
 
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.cancel_elasticsearch_service_software_update("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.cancel_elasticsearch_service_software_update("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :cancel_elasticsearch_service_software_update,
         params: %{
@@ -188,66 +193,116 @@ defmodule ExAws.ElasticSearch do
 
   @doc """
   Creates a new Elasticsearch domain.
-  For more information, see [Creating Elasticsearch Domains] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains
+
+  For more information, see [Creating Elasticsearch Domains](https://amzn.to/2Uu3XC7)
   in the Amazon Elasticsearch Service Developer Guide.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region.
-                               Domain names must start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
-                               [REQUIRED]
+    * domain_name (`String`) - The name of the Elasticsearch domain that you are
+                               creating. Domain names are unique across the
+                               domains owned by an account within an AWS region.
+                               Domain names must start with a letter or number
+                               and can contain the following characters: a-z
+                               (lowercase), 0-9, and - (hyphen).
 
-    * elasticsearch_version (`String`) - String of format X.Y to specify version for the Elasticsearch domain eg. "1.5" or "2.3".
-                                         For more information, see [Creating Elasticsearch Domains] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains
-                                         in the Amazon Elasticsearch Service Developer Guide.
+    * elasticsearch_version (`String`) - String of format X.Y to specify version
+                                         for the Elasticsearch domain eg. "1.5"
+                                         or "2.3". For more information, see
+                                         [Creating Elasticsearch Domains](https://amzn.to/2Uu3XC7)
+                                         in the Amazon Elasticsearch Service
+                                         Developer Guide.
 
-    * elasticsearch_cluster_config (`Map` of `t:elasticsearch_cluster_config/0`) - Configuration options for an Elasticsearch domain. Specifies the instance type and number of instances in the domain cluster.
-          * instance_type (`String`) - The instance type for an Elasticsearch cluster.
-          * instance_count (`Integer`) - The number of instances in the specified domain cluster.
-          * dedicated_master_enabled (`Boolean`) - A boolean value to indicate whether a dedicated master node is enabled.
-                                                   See [About Dedicated Master Nodes] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-dedicatedmasternodes for more information.
-          * zone_awareness_enabled (`Boolean`) - A boolean value to indicate whether zone awareness is enabled.
-                                                 See [About Zone Awareness] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-zoneawareness for more information.
-          * zone_awareness_config (`Map`) - Specifies the zone awareness configuration for a domain when zone awareness is enabled.
-                * availability_zone_count (`Integer`) - An integer value to indicate the number of availability zones for a domain when zone awareness is enabled. This should be equal to number of subnets if VPC endpoints is enabled
-          * dedicated_master_type (`String`) - The instance type for a dedicated master node.
-          * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for the cluster.
+    * elasticsearch_cluster_config (`Map` of `t:elasticsearch_cluster_config/0`)
+          - Configuration options for an Elasticsearch domain. Specifies the
+          instance type and number of instances in the domain cluster.
+              * instance_type (`String`) - The instance type for an Elasticsearch
+              cluster.
+              * instance_count (`Integer`) - The number of instances in the
+              specified domain cluster.
+              * dedicated_master_enabled (`Boolean`) - A
+              boolean value to indicate whether a dedicated master node is enabled.
+              See [About Dedicated Master Nodes](https://amzn.to/2UMAmDe)
+              for more information.
+              * zone_awareness_enabled (`Boolean`) - A boolean
+              value to indicate whether zone awareness is enabled. See [About Zone
+              Awareness](https://amzn.to/2WVHYkm) for more information.
+              * zone_awareness_config (`Map`) - Specifies the
+              zone awareness configuration for a domain when zone awareness is
+              enabled.
+                  * availability_zone_count (`Integer`) - An integer value to
+                  indicate the number of availability zones for a domain when zone
+                  awareness is enabled. This should be equal to number of subnets if VPC
+                  endpoints is enabled
+              * dedicated_master_type (`String`) - The instance
+              type for a dedicated master node.
+              * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for
+              the cluster.
 
-    * ebs_options (`Map` of `t:ebs_options/0`) - Options to enable, disable and specify the type and size of EBS storage volumes.
+    * ebs_options (`Map` of `t:ebs_options/0`) - Options to enable, disable and
+          specify the type and size of EBS storage volumes.
           * ebs_enabled (`Boolean`) - Specifies whether EBS-based storage is enabled.
-          * volume_type (`String`) - Specifies the volume type for EBS-based storage.
-          * volume_size (`Integer`) - Integer to specify the size of an EBS volume.
-          * iops (`Integer`) - Specifies the IOPD for a Provisioned IOPS EBS volume (SSD).
+          * volume_type (`String`) - Specifies the volume type for EBS-based
+          storage.
+          * volume_size (`Integer`) - Integer to specify the size of an
+          EBS volume.
+          * iops (`Integer`) - Specifies the IOPD for a Provisioned
+          IOPS EBS volume (SSD).
 
     * access_policies (`String`) - IAM access policy as a JSON-formatted string.
 
-    * snapshot_options (`Map` of `t:snapshot_options/0`) - Option to set time, in UTC format, of the daily automated snapshot. Default value is 0 hours.
-          * automated_snapshot_start_hour (`Integer`) - Specifies the time, in UTC format, when the service takes a daily automated snapshot of the specified Elasticsearch domain. Default value is 0 hours.
+    * snapshot_options (`Map` of `t:snapshot_options/0`) - Option to set time,
+          in UTC format, of the daily automated snapshot. Default value is 0
+          hours.
+          * automated_snapshot_start_hour (`Integer`) - Specifies the
+          time, in UTC format, when the service takes a daily automated snapshot
+          of the specified Elasticsearch domain. Default value is 0 hours.
 
-    * vpc_options (`Map` of `t:vpc_options/0`) - Options to specify the subnets and security groups for VPC endpoint. For more information, see [Creating a VPC] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-creating-vpc in VPC Endpoints for Amazon Elasticsearch Service Domains
+    * vpc_options (`Map` of `t:vpc_options/0`) - Options to specify the subnets
+          and security groups for VPC endpoint. For more information, see
+          [Creating a VPC](https://amzn.to/2U38s1C)
+          in VPC Endpoints for Amazon Elasticsearch Service Domains
           * subnet_ids (`List` of `String`) - Specifies the subnets for VPC endpoint.
-          * security_group_ids (`List` of `String`) - Specifies the security groups for VPC endpoint.
+          * security_group_ids (`List` of `String`) - Specifies the security
+          groups for VPC endpoint.
 
-    * cognito_options (`Map` of `t:cognito_options/0`) - Options to specify the Cognito user and identity pools for Kibana authentication. For more information, see [Amazon Cognito Authentication for Kibana] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html.
-          * enabled (`Boolean`) - Specifies the option to enable Cognito for Kibana authentication.
-          * user_pool_id (`String`) - Specifies the Cognito user pool ID for Kibana authentication.
-          * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana authentication.
-          * role_arn (`String`) - Specifies the role ARN that provides Elasticsearch permissions for accessing Cognito resources.
+    * cognito_options (`Map` of `t:cognito_options/0`) - Options to specify the
+          Cognito user and identity pools for Kibana authentication. For more
+          information, see [Amazon Cognito Authentication for Kibana](https://amzn.to/2Q2YUX5).
+          * enabled (`Boolean`) - Specifies the option to enable Cognito for
+          Kibana authentication.
+          * user_pool_id (`String`) - Specifies the
+          Cognito user pool ID for Kibana authentication.
+          * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana
+          authentication.
+          * role_arn (`String`) - Specifies the role ARN that
+          provides Elasticsearch permissions for accessing Cognito resources.
 
-    * encryption_at_rest_options (`Map` of `t:encryption_at_rest_options/0`) - Specifies the Encryption At Rest Options.
+    * encryption_at_rest_options (`Map` of `t:encryption_at_rest_options/0`) -
+          Specifies the Encryption At Rest Options.
           * enabled (`Boolean`) - Specifies the option to enable Encryption At Rest.
           * kms_key_id (`String`) - Specifies the KMS Key ID for Encryption At Rest options.
 
-    * node_to_node_encryption_options (`Map`) - Specifies the NodeToNodeEncryptionOptions.
-          * enabled (`Boolean`) - Specify true to enable node-to-node encryption.
+    * node_to_node_encryption_options (`Map`) - Specifies the
+          NodeToNodeEncryptionOptions.
+          * enabled (`Boolean`) - Specify true to
+          enable node-to-node encryption.
 
-    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See [Configuration Advanced Options] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options for more information.
+    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow
+          references to indices in an HTTP request body. Must be false when
+          configuring access to individual sub-resources. By default, the value
+          is true. See [Configuration Advanced Options](https://amzn.to/2LD1KPP)
+          for more information.
           * %{`String`: "string"}
 
-    * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of LogType and LogPublishingOption , each containing options to publish a given type of Elasticsearch log.
+    * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of
+          LogType and LogPublishingOption , each containing options to publish a
+          given type of Elasticsearch log.
           * %{`String`: %{
-            * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log group to which log needs to be published.,
-            * enabled (`Boolean`) - Specifies whether given log publishing option is enabled or not.
+            * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log
+            group to which log needs to be published.,
+            * enabled (`Boolean`) -
+            Specifies whether given log publishing option is enabled or not.
           }}
 
   """
@@ -262,15 +317,18 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered.
+  Permanently deletes the specified Elasticsearch domain and all of its data.
+
+  Once a domain is deleted, it cannot be recovered.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of the Elasticsearch domain that you want to permanently delete. [REQUIRED]
+    * domain_name (`String`) - The name of the Elasticsearch domain that you
+      want to permanently delete.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.delete_elasticsearch_domain("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.delete_elasticsearch_domain("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :delete_elasticsearch_domain,
         params: %{
@@ -291,9 +349,13 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Deletes the service-linked role that Elasticsearch Service uses to manage and maintain VPC domains.
-  Role deletion will fail if any existing VPC domains use the role. You must delete any such Elasticsearch domains before deleting the role.
-  See [Deleting Elasticsearch Service Role] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-enabling-slr in VPC Endpoints for Amazon Elasticsearch Service Domains .
+  Deletes the service-linked role that Elasticsearch Service uses to manage and
+  maintain VPC domains.
+
+  Role deletion will fail if any existing VPC domains use
+  the role. You must delete any such Elasticsearch domains before deleting the
+  role. See [Deleting Elasticsearch Service Role](https://amzn.to/2I8vdj2) in
+  VPC Endpoints for Amazon Elasticsearch Service Domains .
 
   ## Parameters:
 
@@ -301,7 +363,7 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.delete_elasticsearch_service_role()
+      iex> ExAws.Elasticsearch.delete_elasticsearch_service_role()
       %ExAws.Operation.Query{
         action: :delete_elasticsearch_service_role,
         params: %{
@@ -320,15 +382,17 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.
+  Returns domain configuration information about the specified Elasticsearch
+  domain, including the domain ID, domain endpoint, and domain ARN.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of the Elasticsearch domain for which you want information. [REQUIRED]
+    * domain_name (`String`) - The name of the Elasticsearch domain for which
+      you want information.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.describe_elasticsearch_domain("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.describe_elasticsearch_domain("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_domain,
         params: %{
@@ -349,15 +413,18 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.
+  Provides cluster configuration information about the specified Elasticsearch
+  domain, such as the state, creation date, update version, and update date for
+  cluster options.
 
   ## Parameters:
 
-    * domain_name (`String`) - The Elasticsearch domain that you want to get information about. [REQUIRED]
+    * domain_name (`String`) - The Elasticsearch domain that you want to get
+      information about.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.describe_elasticsearch_domain_config("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.describe_elasticsearch_domain_config("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_domain_config,
         params: %{
@@ -378,15 +445,17 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.
+  Returns domain configuration information about the specified Elasticsearch
+  domains, including the domain ID, domain endpoint, and domain ARN.
 
   ## Parameters:
 
-    * domain_names (`List` of `String`) - The Elasticsearch domains for which you want information. [REQUIRED]
+    * domain_names (`List` of `String`) - The Elasticsearch domains for which
+      you want information.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.describe_elasticsearch_domains(["http://your.es.domain.here.com", "http://your.next.es.domain.here.com"])
+      iex> ExAws.Elasticsearch.describe_elasticsearch_domains(["http://your.es.domain.here.com", "http://your.next.es.domain.here.com"])
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_domains,
         params: %{
@@ -408,19 +477,27 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Describe Elasticsearch Limits for a given InstanceType and ElasticsearchVersion. When modifying existing Domain, specify the `` DomainName `` to know what Limits are supported for modifying.
+  Describe Elasticsearch Limits for a given InstanceType and
+  ElasticsearchVersion.
+
+  When modifying existing Domain, specify the ``
+  DomainName `` to know what Limits are supported for modifying.
 
   ## Parameters:
 
-    * domain_name (`String`) - DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch `` Limits `` for existing domain.
+    * domain_name (`String`) - DomainName represents the name of the Domain that
+      we are trying to modify. This should be present only if we are querying
+      for Elasticsearch `` Limits `` for existing domain.
 
-    * instance_type (`String`) - The instance type for an Elasticsearch cluster for which Elasticsearch `` Limits `` are needed. [REQUIRED]
+    * instance_type (`String`) - The instance type for an Elasticsearch cluster
+      for which Elasticsearch `` Limits `` are needed.
 
-    * elasticsearch_version (`String`) - Version of Elasticsearch for which `` Limits `` are needed. [REQUIRED]
+    * elasticsearch_version (`String`) - Version of Elasticsearch for which ``
+      Limits `` are needed.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.describe_elasticsearch_instance_type_limits("m3.medium.elasticsearch", "6.7.1")
+      iex> ExAws.Elasticsearch.describe_elasticsearch_instance_type_limits("m3.medium.elasticsearch", "6.7.1")
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_instance_type_limits,
         params: %{
@@ -458,15 +535,19 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * reserved_elasticsearch_instance_offering_id (`String`) - The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.
+    * reserved_elasticsearch_instance_offering_id (`String`) - The offering
+      identifier filter value. Use this parameter to show only the available
+      offering that matches the specified reservation identifier.
 
-    * max_results (`Integer`) - Set this value to limit the number of results returned. If not specified, defaults to 100.
+    * max_results (`Integer`) - Set this value to limit the number of results
+      returned. If not specified, defaults to 100.
 
-    * next_token (`String`) - NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.
+    * next_token (`String`) - NextToken should be sent in case if earlier API
+      call produced result containing NextToken. It is used for pagination.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.describe_reserved_elasticsearch_instance_offerings(reserved_elasticsearch_instance_offering_id: "offering_id")
+      iex> ExAws.Elasticsearch.describe_reserved_elasticsearch_instance_offerings(reserved_elasticsearch_instance_offering_id: "offering_id")
       %ExAws.Operation.Query{
         action: :describe_reserved_elasticsearch_instance_offerings,
         params: %{
@@ -493,15 +574,19 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * reserved_elasticsearch_instance_id (`String`) - The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved Elasticsearch instance ID.
+    * reserved_elasticsearch_instance_id (`String`) - The reserved instance
+      identifier filter value. Use this parameter to show only the reservation
+      that matches the specified reserved Elasticsearch instance ID.
 
-    * max_results (`Integer`) - Set this value to limit the number of results returned. If not specified, defaults to 100.
+    * max_results (`Integer`) - Set this value to limit the number of results
+      returned. If not specified, defaults to 100.
 
-    * next_token (`String`) - NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.
+    * next_token (`String`) - NextToken should be sent in case if earlier API
+      call produced result containing NextToken. It is used for pagination.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.describe_reserved_elasticsearch_instances(reserved_elasticsearch_instance_id: "i-123456789")
+      iex> ExAws.Elasticsearch.describe_reserved_elasticsearch_instances(reserved_elasticsearch_instance_id: "i-123456789")
       %ExAws.Operation.Query{
         action: :describe_reserved_instances,
         params: %{
@@ -524,15 +609,21 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Returns a list of upgrade compatible Elastisearch versions. You can optionally pass a `` DomainName `` to get all upgrade compatible Elasticsearch versions for that specific domain.
+  Returns a list of upgrade compatible Elastisearch versions.
+
+  You can optionally pass a `` DomainName `` to get all upgrade compatible
+  Elasticsearch versions for that specific domain.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names
+      are unique across the domains owned by an account within an AWS region.
+      Domain names start with a letter or number and can contain the following
+      characters: a-z (lowercase), 0-9, and - (hyphen).
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.get_compatible_elasticsearch_versions(domain_name: "http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.get_compatible_elasticsearch_versions(domain_name: "http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :get_compatible_elasticsearch_versions,
         params: %{
@@ -554,19 +645,26 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Retrieves the complete history of the last 10 upgrades that were performed on the domain.
+  Retrieves the complete history of the last 10 upgrades that were performed on
+  the domain.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen). [REQUIRED]
+    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names
+      are unique across the domains owned by an account within an AWS region.
+      Domain names start with a letter or number and can contain the following
+      characters: a-z (lowercase), 0-9, and - (hyphen).
 
-    * max_results (`Integer`) - Set this value to limit the number of results returned.
+    * max_results (`Integer`) - Set this value to limit the number of results
+      returned.
 
-    * next_token (`String`) - Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results.
+    * next_token (`String`) - Paginated APIs accepts NextToken input to returns
+      next page results and provides a NextToken output in the response which
+      can be used by the client to retrieve more results.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.get_upgrade_history("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.get_upgrade_history("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :get_upgrade_history,
         params: %{
@@ -589,15 +687,19 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Retrieves the latest status of the last upgrade or upgrade eligibility check that was performed on the domain.
+  Retrieves the latest status of the last upgrade or upgrade eligibility check
+  that was performed on the domain.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen). [REQUIRED]
+    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names
+      are unique across the domains owned by an account within an AWS region.
+      Domain names start with a letter or number and can contain the following
+      characters: a-z (lowercase), 0-9, and - (hyphen).
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.get_upgrade_status("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.get_upgrade_status("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :get_upgrade_status,
         params: %{
@@ -618,7 +720,8 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Returns the name of all Elasticsearch domains owned by the current user's account.
+  Returns the name of all Elasticsearch domains owned by the current user's
+  account.
 
   ## Parameters:
 
@@ -626,7 +729,7 @@ defmodule ExAws.ElasticSearch do
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.list_domain_names()
+      iex> ExAws.Elasticsearch.list_domain_names()
       %ExAws.Operation.Query{
         action: :list_domain_names,
         params: %{"Action" => "ListDomainNames", "Version" => "2015-01-01"},
@@ -642,21 +745,28 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  List all Elasticsearch instance types that are supported for given ElasticsearchVersion
+  List all Elasticsearch instance types that are supported for given
+  ElasticsearchVersion
 
   ## Parameters:
 
-    * elasticsearch_version (`String`) - Version of Elasticsearch for which list of supported elasticsearch instance types are needed. [REQUIRED]
+    * elasticsearch_version (`String`) - Version of Elasticsearch for which list
+      of supported elasticsearch instance types are needed.
 
-    * domain_name (`String`) - DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for list of available Elasticsearch instance types when modifying existing domain.
+    * domain_name (`String`) - DomainName represents the name of the Domain that
+      we are trying to modify. This should be present only if we are querying
+      for list of available Elasticsearch instance types when modifying existing
+      domain.
 
-    * max_results (`Integer`) - Set this value to limit the number of results returned. Value provided must be greater than 30 else it wont be honored.
+    * max_results (`Integer`) - Set this value to limit the number of results
+      returned. Value provided must be greater than 30 else it wont be honored.
 
-    * next_token (`String`) - NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.
+    * next_token (`String`) - NextToken should be sent in case if earlier API
+      call produced result containing NextToken. It is used for pagination.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.list_elasticsearch_instance_types("6.7.1")
+      iex> ExAws.Elasticsearch.list_elasticsearch_instance_types("6.7.1")
       %ExAws.Operation.Query{
         action: :list_elasticsearch_instance_types,
         params: %{
@@ -686,13 +796,16 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * max_results (`Integer`) - Set this value to limit the number of results returned. Value provided must be greater than 10 else it wont be honored.
+    * max_results (`Integer`) - Set this value to limit the number of results
+      returned. Value provided must be greater than 10 else it wont be honored.
 
-    * next_token (`String`) - Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results.
+    * next_token (`String`) - Paginated APIs accepts NextToken input to returns
+      next page results and provides a NextToken output in the response which
+      can be used by the client to retrieve more results.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.list_elasticsearch_versions(max_results: 20)
+      iex> ExAws.Elasticsearch.list_elasticsearch_versions(max_results: 20)
       %ExAws.Operation.Query{
         action: :list_elasticsearch_versions,
         params: %{
@@ -718,11 +831,12 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * arn (`String`) - Specify the ARN for the Elasticsearch domain to which the tags are attached that you want to view. [REQUIRED]
+    * arn (`String`) - Specify the ARN for the Elasticsearch domain to which the
+      tags are attached that you want to view.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.list_tags("arn:aws:elasticsearch:region:123456789:your_es")
+      iex> ExAws.Elasticsearch.list_tags("arn:aws:elasticsearch:region:123456789:your_es")
       %ExAws.Operation.Query{
         action: :list_tags,
         params: %{
@@ -747,15 +861,18 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * reserved_elasticsearch_instance_offering_id (`String`) - The ID of the reserved Elasticsearch instance offering to purchase. [REQUIRED]
+    * reserved_elasticsearch_instance_offering_id (`String`) - The ID of the
+      reserved Elasticsearch instance offering to purchase.
 
-    * reservation_name (`String`) - A customer-specified identifier to track this reservation. [REQUIRED]
+    * reservation_name (`String`) - A customer-specified identifier to track
+      this reservation.
 
-    * instance_count (`Integer`) - The number of Elasticsearch instances to reserve.
+    * instance_count (`Integer`) - The number of Elasticsearch instances to
+      reserve.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.purchase_reserved_elasticsearch_instance_offering("offering_id", "reservation_name", instance_count: 10)
+      iex> ExAws.Elasticsearch.purchase_reserved_elasticsearch_instance_offering("offering_id", "reservation_name", instance_count: 10)
       %ExAws.Operation.Query{
         action: :purchase_reserved_elasticsearch_instance_offering,
         params: %{
@@ -797,20 +914,22 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * arn (`String`) - Specifies the ARN for the Elasticsearch domain from which you want to delete the specified tags. [REQUIRED]
+    * arn (`String`) - Specifies the ARN for the Elasticsearch domain from which
+      you want to delete the specified tags.
 
-    * tag_keys (`List` of `t:tag_key_only/0`) - Specifies the TagKey list which you want to remove from the Elasticsearch domain. [REQUIRED]
+    * tag_keys (`List` of `t:tag_key_only/0`) - Specifies the TagKey list which
+      you want to remove from the Elasticsearch domain.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.remove_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello"}, %{key: "World"}])
+      iex> ExAws.Elasticsearch.remove_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello"}, %{key: "World"}])
       %ExAws.Operation.Query{
         action: :remove_tags,
         params: %{
           "Action" => "RemoveTags",
           "Arn" => "arn:aws:elasticsearch:region:123456789:your_es",
           "TagKeys.1.Key" => "Hello",
-          "TagKeys.2.Value" => "World",
+          "TagKeys.2.Key" => "World",
           "Version" => "2015-01-01"
         },
         parser: &ExAws.Utils.identity/2,
@@ -830,11 +949,12 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of the domain that you want to update to the latest service software. [REQUIRED]
+    * domain_name (`String`) - The name of the domain that you want to update to
+      the latest service software.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.start_elasticsearch_service_software_update("http://your.es.domain.here.com")
+      iex> ExAws.Elasticsearch.start_elasticsearch_service_software_update("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :start_elasticsearch_service_software_update,
         params: %{
@@ -860,50 +980,93 @@ defmodule ExAws.ElasticSearch do
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region.
-                               Domain names must start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
-                               [REQUIRED]
+    * domain_name (`String`) - The name of the Elasticsearch domain that you are
+                               creating. Domain names are unique across the
+                               domains owned by an account within an AWS region.
+                               Domain names must start with a letter or number
+                               and can contain the following characters: a-z
+                               (lowercase), 0-9, and - (hyphen).
 
-    * elasticsearch_cluster_config (`Map` of `t:tag/0`) - Configuration options for an Elasticsearch domain. Specifies the instance type and number of instances in the domain cluster.
-          * instance_type (`String`) - The instance type for an Elasticsearch cluster.
-          * instance_count (`Integer`) - The number of instances in the specified domain cluster.
-          * dedicated_master_enabled (`Boolean`) - A boolean value to indicate whether a dedicated master node is enabled.
-                                                   See [About Dedicated Master Nodes] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-dedicatedmasternodes for more information.
-          * zone_awareness_enabled (`Boolean`) - A boolean value to indicate whether zone awareness is enabled.
-                                                 See [About Zone Awareness] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-zoneawareness for more information.
-          * zone_awareness_config (`Map`) - Specifies the zone awareness configuration for a domain when zone awareness is enabled.
-                * availability_zone_count (`Integer`) - An integer value to indicate the number of availability zones for a domain when zone awareness is enabled. This should be equal to number of subnets if VPC endpoints is enabled
-          * dedicated_master_type (`String`) - The instance type for a dedicated master node.
-          * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for the cluster.
+    * elasticsearch_cluster_config (`Map` of `t:elasticsearch_cluster_config/0`)
+          - Configuration options for an Elasticsearch domain. Specifies the
+          instance type and number of instances in the domain cluster.
+              * instance_type (`String`) - The instance type for an Elasticsearch
+              cluster.
+              * instance_count (`Integer`) - The number of instances in the
+              specified domain cluster.
+              * dedicated_master_enabled (`Boolean`) - A
+              boolean value to indicate whether a dedicated master node is enabled.
+              See [About Dedicated Master Nodes](https://amzn.to/2UMAmDe)
+              for more information.
+              * zone_awareness_enabled (`Boolean`) - A boolean
+              value to indicate whether zone awareness is enabled. See [About Zone
+              Awareness](https://amzn.to/2WVHYkm) for more information.
+              * zone_awareness_config (`Map`) - Specifies the
+              zone awareness configuration for a domain when zone awareness is
+              enabled.
+                  * availability_zone_count (`Integer`) - An integer value to
+                  indicate the number of availability zones for a domain when zone
+                  awareness is enabled. This should be equal to number of subnets if VPC
+                  endpoints is enabled
+              * dedicated_master_type (`String`) - The instance
+              type for a dedicated master node.
+              * dedicated_master_count (`Integer`) - Total number of dedicated master nodes, active and on standby, for
+              the cluster.
 
-    * ebs_options (`Map` of `t:ebs_options/0`) - Options to enable, disable and specify the type and size of EBS storage volumes.
+    * ebs_options (`Map` of `t:ebs_options/0`) - Options to enable, disable and
+          specify the type and size of EBS storage volumes.
           * ebs_enabled (`Boolean`) - Specifies whether EBS-based storage is enabled.
-          * volume_type (`String`) - Specifies the volume type for EBS-based storage.
-          * volume_size (`Integer`) - Integer to specify the size of an EBS volume.
-          * iops (`Integer`) - Specifies the IOPD for a Provisioned IOPS EBS volume (SSD).
+          * volume_type (`String`) - Specifies the volume type for EBS-based
+          storage.
+          * volume_size (`Integer`) - Integer to specify the size of an
+          EBS volume.
+          * iops (`Integer`) - Specifies the IOPD for a Provisioned
+          IOPS EBS volume (SSD).
 
     * access_policies (`String`) - IAM access policy as a JSON-formatted string.
 
-    * snapshot_options (`Map` of `t:snapshot_options/0`) - Option to set time, in UTC format, of the daily automated snapshot. Default value is 0 hours.
-          * automated_snapshot_start_hour (`Integer`) - Specifies the time, in UTC format, when the service takes a daily automated snapshot of the specified Elasticsearch domain. Default value is 0 hours.
+    * snapshot_options (`Map` of `t:snapshot_options/0`) - Option to set time,
+          in UTC format, of the daily automated snapshot. Default value is 0
+          hours.
+          * automated_snapshot_start_hour (`Integer`) - Specifies the
+          time, in UTC format, when the service takes a daily automated snapshot
+          of the specified Elasticsearch domain. Default value is 0 hours.
 
-    * vpc_options (`Map` of `t:vpc_options/0`) - Options to specify the subnets and security groups for VPC endpoint. For more information, see [Creating a VPC] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-creating-vpc in VPC Endpoints for Amazon Elasticsearch Service Domains
+    * vpc_options (`Map` of `t:vpc_options/0`) - Options to specify the subnets
+          and security groups for VPC endpoint. For more information, see
+          [Creating a VPC](https://amzn.to/2U38s1C)
+          in VPC Endpoints for Amazon Elasticsearch Service Domains
           * subnet_ids (`List` of `String`) - Specifies the subnets for VPC endpoint.
-          * security_group_ids (`List` of `String`) - Specifies the security groups for VPC endpoint.
+          * security_group_ids (`List` of `String`) - Specifies the security
+          groups for VPC endpoint.
 
-    * cognito_options (`Map` of `t:cognito_options/0`) - Options to specify the Cognito user and identity pools for Kibana authentication. For more information, see [Amazon Cognito Authentication for Kibana] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html.
-          * enabled (`Boolean`) - Specifies the option to enable Cognito for Kibana authentication.
-          * user_pool_id (`String`) - Specifies the Cognito user pool ID for Kibana authentication.
-          * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana authentication.
-          * role_arn (`String`) - Specifies the role ARN that provides Elasticsearch permissions for accessing Cognito resources.
+    * cognito_options (`Map` of `t:cognito_options/0`) - Options to specify the
+          Cognito user and identity pools for Kibana authentication. For more
+          information, see [Amazon Cognito Authentication for Kibana](https://amzn.to/2Q2YUX5).
+          * enabled (`Boolean`) - Specifies the option to enable Cognito for
+          Kibana authentication.
+          * user_pool_id (`String`) - Specifies the
+          Cognito user pool ID for Kibana authentication.
+          * identity_pool_id (`String`) - Specifies the Cognito identity pool ID for Kibana
+          authentication.
+          * role_arn (`String`) - Specifies the role ARN that
+          provides Elasticsearch permissions for accessing Cognito resources.
 
-    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See [Configuration Advanced Options] https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options for more information.
+    * advanced_options (`Map` of `t:advanced_options/0`) - Option to allow
+          references to indices in an HTTP request body. Must be false when
+          configuring access to individual sub-resources. By default, the value
+          is true. See [Configuration Advanced Options](https://amzn.to/2LD1KPP)
+          for more information.
           * %{`String`: "string"}
 
-    * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of LogType and LogPublishingOption , each containing options to publish a given type of Elasticsearch log.
+    * log_publishing_options (`Map` of `t:log_publishing_options/0`) - Map of
+          LogType and LogPublishingOption , each containing options to publish a
+          given type of Elasticsearch log.
           * %{`String`: %{
-            * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log group to which log needs to be published.,
-            * enabled (`Boolean`) - Specifies whether given log publishing option is enabled or not.
+            * cloudwatchlogs_log_group_arn (`String`) - ARN of the Cloudwatch log
+            group to which log needs to be published.,
+            * enabled (`Boolean`) -
+            Specifies whether given log publishing option is enabled or not.
           }}
 
   """
@@ -918,19 +1081,26 @@ defmodule ExAws.ElasticSearch do
   end
 
   @doc """
-  Allows you to either upgrade your domain or perform an Upgrade eligibility check to a compatible Elasticsearch version.
+  Allows you to either upgrade your domain or perform an Upgrade eligibility
+  check to a compatible Elasticsearch version.
 
   ## Parameters:
 
-    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen). [REQUIRED]
+    * domain_name (`String`) - The name of an Elasticsearch domain. Domain names
+      are unique across the domains owned by an account within an AWS region.
+      Domain names start with a letter or number and can contain the following
+      characters: a-z (lowercase), 0-9, and - (hyphen).
 
-    * target_version (`String`) - The version of Elasticsearch that you intend to upgrade the domain to. [REQUIRED]
+    * target_version (`String`) - The version of Elasticsearch that you intend
+      to upgrade the domain to.
 
-    * perform_check_only (`Boolean`) - This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade.
+    * perform_check_only (`Boolean`) - This flag, when set to True, indicates
+      that an Upgrade Eligibility Check needs to be performed. This will not
+      actually perform the Upgrade.
 
   ## Examples:
 
-      iex> ExAws.ElasticSearch.upgrade_elasticsearch_domain("http://your.es.domain.here.com", "6.7.1", perform_check_only: true)
+      iex> ExAws.Elasticsearch.upgrade_elasticsearch_domain("http://your.es.domain.here.com", "6.7.1", perform_check_only: true)
       %ExAws.Operation.Query{
         action: :upgrade_elasticsearch_domain,
         params: %{

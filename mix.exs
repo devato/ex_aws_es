@@ -1,15 +1,29 @@
 defmodule ExAwsElasticSearch.MixProject do
   use Mix.Project
 
+  @version "1.0.0"
+
   def project do
     [
       app: :ex_aws_elasticsearch,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.7",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      source_url: "https://github.com/JustinTangg/ex_aws_elasticsearch",
+      homepage_url: "https://github.com/JustinTangg/ex_aws_elasticsearch",
+      package: package(),
+      docs: [
+        main: "readme",
+        extras: ["README.md"],
+        source_ref: "v#{@version}"
+      ]
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do
@@ -26,6 +40,15 @@ defmodule ExAwsElasticSearch.MixProject do
       {:poison, ">= 1.2.0", optional: true},
       {:ex_doc, "~> 0.19.2", only: [:dev, :test]},
       {:ex_aws, "~> 2.0"}
+    ]
+  end
+
+  defp package do
+    [
+      description: "AWS Elasticsearch service for ex_aws",
+      maintainers: ["Justin Tang"],
+      licenses: ["MIT"],
+      links: %{github: "https://github.com/JustinTangg/ex_aws_elasticsearch"}
     ]
   end
 end
