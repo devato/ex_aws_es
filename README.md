@@ -11,7 +11,7 @@ by adding `ex_aws_elasticsearch` to your list of dependencies in `mix.exs` along
 def deps do
   [
     {:ex_aws, "~> 2.0"},
-    {:ex_aws_elasticsearch, "~> 1.0.0"},
+    {:ex_aws_elasticsearch, "~> 1.0.1"},
     {:poison, "~> 3.0"},
     {:hackney, "~> 1.9"}
   ]
