@@ -1,17 +1,17 @@
-# ExAwsElasticSearch
+# ExAwsES
 
 AWS ElasticSearch module for [ex_aws](https://github.com/ex-aws/ex_aws).
 
 ## Installation
 
-If [available in Hex](https://hex.pm/packages/ex_aws_elasticsearch), the package can be installed
-by adding `ex_aws_elasticsearch` to your list of dependencies in `mix.exs` along with :ex_aws and your preferred JSON codec / http client. Example:
+If [available in Hex](https://hex.pm/packages/ex_aws_es), the package can be installed
+by adding `ex_aws_es` to your list of dependencies in `mix.exs` along with :ex_aws and your preferred JSON codec / http client. Example:
 
 ```elixir
 def deps do
   [
     {:ex_aws, "~> 2.0"},
-    {:ex_aws_elasticsearch, "~> 1.0.1"},
+    {:ex_aws_es, "~> 1.0.1"},
     {:poison, "~> 3.0"},
     {:hackney, "~> 1.9"}
   ]
@@ -20,7 +20,7 @@ end
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/ex_aws_elasticsearch](https://hexdocs.pm/ex_aws_elasticsearch).
+be found at [https://hexdocs.pm/ex_aws_es](https://hexdocs.pm/ex_aws_es).
 
 ## License
 

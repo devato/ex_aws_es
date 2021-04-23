@@ -1,6 +1,6 @@
-defmodule ExAws.Elasticsearch do
+defmodule ExAws.ES do
   @moduledoc """
-  Documentation for ExAwsElasticsearch.
+  Documentation for ExAwsES.
   """
   use ExAws.Utils,
     format_type: :xml,
@@ -135,7 +135,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-        iex> ExAws.Elasticsearch.add_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello", value: "test"}])
+        iex> ExAws.ES.add_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello", value: "test"}])
         %ExAws.Operation.Query{
         action: :add_tags,
         params: %{
@@ -171,7 +171,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.cancel_elasticsearch_service_software_update("http://your.es.domain.here.com")
+      iex> ExAws.ES.cancel_elasticsearch_service_software_update("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :cancel_elasticsearch_service_software_update,
         params: %{
@@ -329,7 +329,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.delete_elasticsearch_domain("http://your.es.domain.here.com")
+      iex> ExAws.ES.delete_elasticsearch_domain("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :delete_elasticsearch_domain,
         params: %{
@@ -364,7 +364,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.delete_elasticsearch_service_role()
+      iex> ExAws.ES.delete_elasticsearch_service_role()
       %ExAws.Operation.Query{
         action: :delete_elasticsearch_service_role,
         params: %{
@@ -393,7 +393,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.describe_elasticsearch_domain("http://your.es.domain.here.com")
+      iex> ExAws.ES.describe_elasticsearch_domain("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_domain,
         params: %{
@@ -425,7 +425,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.describe_elasticsearch_domain_config("http://your.es.domain.here.com")
+      iex> ExAws.ES.describe_elasticsearch_domain_config("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_domain_config,
         params: %{
@@ -456,7 +456,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.describe_elasticsearch_domains(["http://your.es.domain.here.com", "http://your.next.es.domain.here.com"])
+      iex> ExAws.ES.describe_elasticsearch_domains(["http://your.es.domain.here.com", "http://your.next.es.domain.here.com"])
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_domains,
         params: %{
@@ -498,7 +498,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.describe_elasticsearch_instance_type_limits("m3.medium.elasticsearch", "6.7.1")
+      iex> ExAws.ES.describe_elasticsearch_instance_type_limits("m3.medium.elasticsearch", "6.7.1")
       %ExAws.Operation.Query{
         action: :describe_elasticsearch_instance_type_limits,
         params: %{
@@ -548,7 +548,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.describe_reserved_elasticsearch_instance_offerings(reserved_elasticsearch_instance_offering_id: "offering_id")
+      iex> ExAws.ES.describe_reserved_elasticsearch_instance_offerings(reserved_elasticsearch_instance_offering_id: "offering_id")
       %ExAws.Operation.Query{
         action: :describe_reserved_elasticsearch_instance_offerings,
         params: %{
@@ -587,7 +587,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.describe_reserved_elasticsearch_instances(reserved_elasticsearch_instance_id: "i-123456789")
+      iex> ExAws.ES.describe_reserved_elasticsearch_instances(reserved_elasticsearch_instance_id: "i-123456789")
       %ExAws.Operation.Query{
         action: :describe_reserved_instances,
         params: %{
@@ -624,7 +624,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.get_compatible_elasticsearch_versions(domain_name: "http://your.es.domain.here.com")
+      iex> ExAws.ES.get_compatible_elasticsearch_versions(domain_name: "http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :get_compatible_elasticsearch_versions,
         params: %{
@@ -665,7 +665,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.get_upgrade_history("http://your.es.domain.here.com")
+      iex> ExAws.ES.get_upgrade_history("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :get_upgrade_history,
         params: %{
@@ -700,7 +700,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.get_upgrade_status("http://your.es.domain.here.com")
+      iex> ExAws.ES.get_upgrade_status("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :get_upgrade_status,
         params: %{
@@ -730,7 +730,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.list_domain_names()
+      iex> ExAws.ES.list_domain_names()
       %ExAws.Operation.Query{
         action: :list_domain_names,
         params: %{"Action" => "ListDomainNames", "Version" => "2015-01-01"},
@@ -767,7 +767,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.list_elasticsearch_instance_types("6.7.1")
+      iex> ExAws.ES.list_elasticsearch_instance_types("6.7.1")
       %ExAws.Operation.Query{
         action: :list_elasticsearch_instance_types,
         params: %{
@@ -806,7 +806,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.list_elasticsearch_versions(max_results: 20)
+      iex> ExAws.ES.list_elasticsearch_versions(max_results: 20)
       %ExAws.Operation.Query{
         action: :list_elasticsearch_versions,
         params: %{
@@ -837,7 +837,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.list_tags("arn:aws:elasticsearch:region:123456789:your_es")
+      iex> ExAws.ES.list_tags("arn:aws:elasticsearch:region:123456789:your_es")
       %ExAws.Operation.Query{
         action: :list_tags,
         params: %{
@@ -873,7 +873,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.purchase_reserved_elasticsearch_instance_offering("offering_id", "reservation_name", instance_count: 10)
+      iex> ExAws.ES.purchase_reserved_elasticsearch_instance_offering("offering_id", "reservation_name", instance_count: 10)
       %ExAws.Operation.Query{
         action: :purchase_reserved_elasticsearch_instance_offering,
         params: %{
@@ -923,7 +923,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.remove_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello"}, %{key: "World"}])
+      iex> ExAws.ES.remove_tags("arn:aws:elasticsearch:region:123456789:your_es", [%{key: "Hello"}, %{key: "World"}])
       %ExAws.Operation.Query{
         action: :remove_tags,
         params: %{
@@ -955,7 +955,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.start_elasticsearch_service_software_update("http://your.es.domain.here.com")
+      iex> ExAws.ES.start_elasticsearch_service_software_update("http://your.es.domain.here.com")
       %ExAws.Operation.Query{
         action: :start_elasticsearch_service_software_update,
         params: %{
@@ -1105,7 +1105,7 @@ defmodule ExAws.Elasticsearch do
 
   ## Examples:
 
-      iex> ExAws.Elasticsearch.upgrade_elasticsearch_domain("http://your.es.domain.here.com", "6.7.1", perform_check_only: true)
+      iex> ExAws.ES.upgrade_elasticsearch_domain("http://your.es.domain.here.com", "6.7.1", perform_check_only: true)
       %ExAws.Operation.Query{
         action: :upgrade_elasticsearch_domain,
         params: %{

@@ -1,9 +1,9 @@
-defmodule ExAwsElasticsearchTest do
+defmodule ExAws.ESTest do
   use ExUnit.Case
-  doctest ExAws.Elasticsearch
+  doctest ExAws.ES
 
   test "create_elasticsearch_domain" do
-    op = ExAws.Elasticsearch.create_elasticsearch_domain("https://your.es.domain.com")
+    op = ExAws.ES.create_elasticsearch_domain("https://your.es.domain.com")
 
     assert op == %ExAws.Operation.Query{
              action: :create_elasticsearch_domain,
@@ -39,9 +39,9 @@ defmodule ExAwsElasticsearchTest do
       }
     ]
 
-    op = ExAws.Elasticsearch.create_elasticsearch_domain("https://your.es.domain.com", opts)
+    op = ExAws.ES.create_elasticsearch_domain("https://your.es.domain.com", opts)
 
-    assert op = %ExAws.Operation.Query{
+    assert op == %ExAws.Operation.Query{
              action: :create_elasticsearch_domain,
              params: %{
                "Action" => "CreateElasticsearchDomain",
@@ -68,9 +68,9 @@ defmodule ExAwsElasticsearchTest do
   end
 
   test "update_elasticsearch_domain_config" do
-    op = ExAws.Elasticsearch.update_elasticsearch_domain_config("https://your.es.domain.com")
+    op = ExAws.ES.update_elasticsearch_domain_config("https://your.es.domain.com")
 
-    assert op = %ExAws.Operation.Query{
+    assert op == %ExAws.Operation.Query{
              action: :update_elasticsearch_domain_config,
              params: %{
                "Action" => "UpdateElasticsearchDomainConfig",
@@ -104,10 +104,9 @@ defmodule ExAwsElasticsearchTest do
       }
     ]
 
-    op =
-      ExAws.Elasticsearch.update_elasticsearch_domain_config("https://your.es.domain.com", opts)
+    op = ExAws.ES.update_elasticsearch_domain_config("https://your.es.domain.com", opts)
 
-    assert op = %ExAws.Operation.Query{
+    assert op == %ExAws.Operation.Query{
              action: :update_elasticsearch_domain_config,
              params: %{
                "Action" => "UpdateElasticsearchDomainConfig",
